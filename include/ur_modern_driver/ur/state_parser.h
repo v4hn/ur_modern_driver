@@ -50,7 +50,7 @@ public:
     message_type type;
     bp.parse(packet_size);
     bp.parse(type);
-    LOG_WARN("Received message type: %u", static_cast<uint8_t>(type));
+    LOG_DEBUG("Received message type: %u", static_cast<uint8_t>(type));
     if (type != message_type::ROBOT_STATE)
     {
       // quietly ignore the intial version message
@@ -72,7 +72,7 @@ public:
         return false;
       }
       uint32_t sub_size = bp.peek<uint32_t>();
-      LOG_INFO("Received package of size %" PRIu32, sub_size);
+      LOG_DEBUG("Received package of size %" PRIu32, sub_size);
 
       if (!bp.checkSize(static_cast<size_t>(sub_size)))
       {
